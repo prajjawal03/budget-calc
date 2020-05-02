@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
+import React,{useState,useEffect} from 'react';
 import './App.css';
+import { v4 as uuidv4 } from 'uuid';
+import { MdDelete } from 'react-icons/md';
+
+import Expinc from './components/Expinc';
+import Form from './components/Form';
+import ItemList from './components/ItemList';
+import Total from './components/Total';
+
+const initialExpense=[
+  {id:uuidv4(),text:"apple",amount:20}
+]
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
 
+const [expenses,setExpenses]=useState(initialExpense)
+console.log(expenses)
+  return <div className='container'>
+<div className='container'>
+<Total expense={expenses}/>
+<Expinc expense={expenses}/>
+<ItemList expense={expenses} setExpense={setExpenses}/>
+<Form expense={expenses} setExpense={setExpenses}/>
+  </div>
+</div>
+
+}
 export default App;
